@@ -1,0 +1,90 @@
+server:
+  port: 8773
+
+spring:
+  sandbox:
+    acctoken: VPCy5OpTi1gmD6q954zu8QcOrcHYYyv52v22KXSgXrMhBsb3
+    domain: http://10.2.71.154
+    networkid: 2
+    ocuid: 90d73b84021f8781bab81ce7888c0c89
+    ocusecret: 89a943f2acf1a92d92fb4c16a85f1d50
+    appid: puhuie20191213
+    #启动时不启动job
+  batch:
+    job:
+      enabled: false
+  #初始化批量
+    initialize-schema: always
+  mail:
+    host: 10.1.122.36
+    password: mail@gzcb
+    addr: ceshi1@gzcb.com.cn
+    path: /usr/src/shiroexcel
+    properties:
+      smtp:
+        auth: true           
+        timeout: 25000  
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: null
+    jedis:
+      pool:
+        min-idle: 8
+        max-idle: 500
+        max-active: 2000
+        max-wait: 10000
+    timeout: 5000      
+  datasource:
+    dynamic:
+      p6spy: true
+      hikari:
+        connection-timeout: 30000
+        max-lifetime: 1800000
+        max-pool-size: 15
+        min-idle: 5
+        connection-test-query: select 1
+        pool-name: FebsHikariCP
+      primary: primary
+      datasource:
+        primary:
+          username: root
+          password: admin
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/shirodemo?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8 
+  aop:
+    proxy-target-class: true
+  messages:
+    encoding: utf-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+   
+mybatis-plus:
+  type-aliases-package: com.feeling.batch.bean
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    jdbc-type-for-null: null
+  global-config: 
+    banner: false
+
+#management:
+#  endpoints: 
+#    web:
+#      exposure:
+#        include:
+#        - httptrace
+#        - metrics
+#febs:
+#  openAopLog: true
+#  max:
+#    batch:
+#      insert:
+#        num: 1000
+#  shiro:
+#    anonUrl: /shiro/login,/shiro/logout/**,/shiro/regist,/shiro/dept/findDeptListByUserId,/shiro/user/check/**,/shiro/user/loginUser,/shiro/jobperformance/createPerformance,/shiro/user/checkOneUser,/shiro/jobperformance/checkPerformance,/shiro/user/selectUsers,/shiro/score/addScores,/shiro/user/selectFourUsers,/shiro/score/updateScore,/shiro/score/checkAllScore,/shiro/dept/threeDepts,/shiro/dept/deptJdk,/shiro/dept/findDeptByLeaderId,/shiro/score/getScore,/shiro/score/updateScoreList,/shiro/score/updateOneScore,/shiro/score/getExceptionScoreApp,/shiro/user/export
+#    jwtTimeOut: 108000
+#
+#accessToken: 3U0V9Ymjaoleacjg6co2vq9aVtsdhb_0xKWNBiiJgzub6p2K
+#appAccountURL: http://186.1.199.93:8080  
